@@ -59,12 +59,15 @@ namespace CodingCat.Cache.Impls
                 throw new InvalidOperationException("must setup the using key");
 
             var fromSegments = string.Join(SEPARATOR, this.segments);
-            return string.Join(
+            var key = string.Join(
                 SEPARATOR,
                 this.KeyPrefix,
-                this.UsingKey,
-                fromSegments
+                this.UsingKey
             );
+
+            return string.IsNullOrEmpty(fromSegments) ?
+                key :
+                string.Join(SEPARATOR, key, fromSegments);
         }
     }
 
