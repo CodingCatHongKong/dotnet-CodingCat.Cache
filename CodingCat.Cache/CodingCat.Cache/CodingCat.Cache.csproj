@@ -6,6 +6,8 @@
     <Version>0.1.0</Version>
     <Authors>Coding Cat (Hong Kong) Limited</Authors>
     <Company>Coding Cat (Hong Kong) Limited</Company>
+    <PackageProjectUrl>https://github.com/CodingCatHongKong/dotnet-CodingCat.Cache</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CodingCatHongKong/dotnet-CodingCat.Cache</RepositoryUrl>
   </PropertyGroup>
 
 </Project>

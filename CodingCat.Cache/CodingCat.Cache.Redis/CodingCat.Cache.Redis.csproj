@@ -5,6 +5,8 @@
     <Version>0.1.0</Version>
     <Authors>Coding Cat (Hong Kong) Limited</Authors>
     <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+    <PackageProjectUrl>https://github.com/CodingCatHongKong/dotnet-CodingCat.Cache</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/CodingCatHongKong/dotnet-CodingCat.Cache</RepositoryUrl>
   </PropertyGroup>
 
   <ItemGroup>
