@@ -8,7 +8,7 @@ namespace CodingCat.Cache.Interfaces
 
         string Get(IKeyBuilder key);
 
-        string Get(IKeyBuilder usingKey, Func<string> callback);
+        string Get(IKeyBuilder key, Func<string> callback);
 
         IStorage Delete(IKeyBuilder key);
     }
