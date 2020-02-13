@@ -57,6 +57,10 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\CodingCat.Cache.Memory\CodingCat.Cache.Memory.csproj">
+      <Project>{7970d01a-ae92-47de-8ba7-e8da55185a28}</Project>
+      <Name>CodingCat.Cache.Memory</Name>
+    </ProjectReference>
     <ProjectReference Include="..\CodingCat.Cache\CodingCat.Cache.csproj">
       <Project>{29b3680f-3638-49d0-b2ec-c4a090355c3f}</Project>
       <Name>CodingCat.Cache</Name>
