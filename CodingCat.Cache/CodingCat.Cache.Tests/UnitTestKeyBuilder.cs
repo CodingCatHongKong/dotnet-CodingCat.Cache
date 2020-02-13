@@ -9,6 +9,17 @@ namespace CodingCat.Cache.Tests
     {
         public static readonly Type UsingType = typeof(UnitTestKeyBuilder);
 
+        public KeyBuilder KeyBuilder { get; }
+
+        #region Constructor(s)
+        public UnitTestKeyBuilder()
+        {
+            this.KeyBuilder = new KeyBuilder<UnitTestKeyBuilder>(
+                Constants.USING_KEY_PREFIX
+            );
+        }
+        #endregion
+
         [TestMethod]
         public void Test_InitKeyBuilder_Ok()
         {
@@ -54,10 +65,11 @@ namespace CodingCat.Cache.Tests
             // Arrange
 
             // Act
-            var actual = new KeyBuilder(UsingType, Constants.USING_KEY_PREFIX);
 
             // Assert
-            Assert.ThrowsException<InvalidOperationException>(actual.ToString);
+            Assert.ThrowsException<InvalidOperationException>(
+                this.KeyBuilder.ToString
+            );
         }
 
         [TestMethod]
@@ -66,8 +78,7 @@ namespace CodingCat.Cache.Tests
             // Arrange
 
             // Act
-            var actual = new KeyBuilder(UsingType, Constants.USING_KEY_PREFIX)
-                .UseKey("");
+            var actual = this.KeyBuilder.UseKey("");
 
             // Assert
             Assert.ThrowsException<InvalidOperationException>(actual.ToString);
@@ -84,17 +95,14 @@ namespace CodingCat.Cache.Tests
                 UsingType.FullName,
                 Constants.USING_KEY_PREFIX
             );
-            var builder = new KeyBuilder<UnitTestKeyBuilder>(
-                Constants.USING_KEY_PREFIX
-            );
 
             // Act
-            var actual = builder.UseKey(USING_KEY);
+            var actual = this.KeyBuilder.UseKey(USING_KEY);
 
             // Assert
             Assert.AreEqual(expectedPrefix, actual.KeyPrefix);
             Assert.AreEqual(USING_KEY, actual.UsingKey);
-            Assert.AreNotEqual(builder.GetHashCode(), actual.GetHashCode());
+            Assert.AreNotEqual(this.KeyBuilder.GetHashCode(), actual.GetHashCode());
         }
 
         [TestMethod]
@@ -114,9 +122,7 @@ namespace CodingCat.Cache.Tests
             );
 
             // Act
-            var actual = new KeyBuilder<UnitTestKeyBuilder>(
-                Constants.USING_KEY_PREFIX
-            )
+            var actual = this.KeyBuilder
                 .UseKey(USING_KEY)
                 .AddSegments(segments)
                 .ToString();
@@ -141,9 +147,7 @@ namespace CodingCat.Cache.Tests
             );
 
             // Act
-            var actual = new KeyBuilder<UnitTestKeyBuilder>(
-                Constants.USING_KEY_PREFIX
-            )
+            var actual = this.KeyBuilder
                 .UseKey(USING_KEY)
                 .AddSegment(segment)
                 .ToString();
@@ -166,9 +170,7 @@ namespace CodingCat.Cache.Tests
             );
 
             // Act
-            var actual = new KeyBuilder<UnitTestKeyBuilder>(
-                Constants.USING_KEY_PREFIX
-            )
+            var actual = this.KeyBuilder
                 .UseKey(USING_KEY)
                 .ToString();
 
