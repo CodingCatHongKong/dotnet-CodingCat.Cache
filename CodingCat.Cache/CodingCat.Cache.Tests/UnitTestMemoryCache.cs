@@ -48,5 +48,13 @@ namespace CodingCat.Cache.Tests
                 Guid.NewGuid().ToString()
             );
         }
+
+        [TestMethod]
+        public void Test_KeyWithSpace_GetOk()
+        {
+            this.Test_KeyWithSpace_GetOk(
+                new Storage(TimeSpan.FromDays(1))
+            );
+        }
     }
 }

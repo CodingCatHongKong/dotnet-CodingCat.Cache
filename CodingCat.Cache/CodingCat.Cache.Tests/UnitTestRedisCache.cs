@@ -62,6 +62,14 @@ namespace CodingCat.Cache.Tests
             );
         }
 
+        [TestMethod]
+        public void Test_KeyWithSpace_GetOk()
+        {
+            this.Test_KeyWithSpace_GetOk(
+                this.GetRedisDatabase(TimeSpan.FromDays(1))
+            );
+        }
+
         private Storage GetRedisDatabase(TimeSpan expiry)
         {
             return new Storage(

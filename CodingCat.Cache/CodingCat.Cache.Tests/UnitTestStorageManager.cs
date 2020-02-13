@@ -86,6 +86,19 @@ namespace CodingCat.Cache.Tests
         }
 
         [TestMethod]
+        public void Test_KeyWithSpace_GetOk()
+        {
+            var memoryStorage = new MemoryStorage(TimeSpan.FromSeconds(10));
+            var redisStorage = this.GetRedisStorage(TimeSpan.FromSeconds(10));
+
+            this.Test_KeyWithSpace_GetOk(
+                new StorageManager()
+                    .SetDefault(memoryStorage)
+                    .AddFallback(redisStorage)
+            );
+        }
+
+        [TestMethod]
         public void Test_GetFromFallback_Ok_NotSaved()
         {
             // Arrange
