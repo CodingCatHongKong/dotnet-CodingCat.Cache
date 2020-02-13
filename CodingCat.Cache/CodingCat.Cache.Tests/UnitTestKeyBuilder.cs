@@ -1,6 +1,6 @@
-﻿using System;
-using CodingCat.Cache.Impls;
+﻿using CodingCat.Cache.Impls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace CodingCat.Cache.Tests
 {
