@@ -1,12 +1,11 @@
-﻿using System;
+﻿using CodingCat.Cache.Impls.Interfaces;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodingCat.Cache.Impls
 {
-    public class KeyBuilder
+    public class KeyBuilder : IKeyBuilder
     {
         public const string SEPARATOR = "-";
 
@@ -33,7 +32,8 @@ namespace CodingCat.Cache.Impls
                     throw new NullReferenceException(nameof(keyPrefix))
             );
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         public KeyBuilder UseKey(string key) =>
             new KeyBuilder(this) { UsingKey = key };
@@ -71,7 +71,11 @@ namespace CodingCat.Cache.Impls
     public class KeyBuilder<T> : KeyBuilder
     {
         #region Constructor(s)
-        public KeyBuilder(string keyPrefix) : base(typeof(T), keyPrefix) { }
-        #endregion
+
+        public KeyBuilder(string keyPrefix) : base(typeof(T), keyPrefix)
+        {
+        }
+
+        #endregion Constructor(s)
     }
 }
