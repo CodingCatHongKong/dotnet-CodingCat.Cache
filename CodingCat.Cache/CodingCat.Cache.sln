@@ -7,7 +7,9 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingCat.Cache.Tests", "Co
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingCat.Cache", "CodingCat.Cache\CodingCat.Cache.csproj", "{29B3680F-3638-49D0-B2EC-C4A090355C3F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingCat.Cache.Memory", "CodingCat.Cache.Memory\CodingCat.Cache.Memory.csproj", "{7970D01A-AE92-47DE-8BA7-E8DA55185A28}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CodingCat.Cache.Memory", "CodingCat.Cache.Memory\CodingCat.Cache.Memory.csproj", "{7970D01A-AE92-47DE-8BA7-E8DA55185A28}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodingCat.Cache.Redis", "CodingCat.Cache.Redis\CodingCat.Cache.Redis.csproj", "{7032F22A-AD2A-4686-BC90-F3666CFEAEEA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -27,6 +29,10 @@ Global
 		{7970D01A-AE92-47DE-8BA7-E8DA55185A28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7970D01A-AE92-47DE-8BA7-E8DA55185A28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7970D01A-AE92-47DE-8BA7-E8DA55185A28}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7032F22A-AD2A-4686-BC90-F3666CFEAEEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7032F22A-AD2A-4686-BC90-F3666CFEAEEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7032F22A-AD2A-4686-BC90-F3666CFEAEEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7032F22A-AD2A-4686-BC90-F3666CFEAEEA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

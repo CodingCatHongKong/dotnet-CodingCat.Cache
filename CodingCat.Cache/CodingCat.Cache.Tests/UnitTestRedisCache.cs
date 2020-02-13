@@ -1,19 +1,30 @@
-﻿using CodingCat.Cache.Memory;
+﻿using System;
+using CodingCat.Cache.Redis;
 using CodingCat.Cache.Tests.Abstracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System;
+using StackExchange.Redis;
 
 namespace CodingCat.Cache.Tests
 {
     [TestClass]
-    public class UnitTestMemoryCache : BaseCachingTest<UnitTestMemoryCache>
+    public class UnitTestRedisCache : BaseCachingTest<UnitTestRedisCache>
     {
+        private IConnectionMultiplexer redis { get; }
+
+        #region Constructor(s)
+        public UnitTestRedisCache() : base()
+        {
+            this.redis = ConnectionMultiplexer
+                .Connect(Constants.REDIS_CONFIG);
+        }
+        #endregion
+
         [TestMethod]
         public void Test_Add_GetOk()
         {
             this.Test_Add_GetOk(
                 this.KeyBuilder.UseKey(nameof(Test_Add_GetOk)),
-                new Storage(TimeSpan.FromDays(1)),
+                this.GetRedisDatabase(TimeSpan.FromDays(1)),
                 expected: nameof(UnitTestMemoryCache)
             );
         }
@@ -25,7 +36,7 @@ namespace CodingCat.Cache.Tests
 
             this.Test_ItemExpired_ReturnNull(
                 this.KeyBuilder.UseKey(nameof(Test_ItemExpired_ReturnNull)),
-                new Storage(expiry),
+                this.GetRedisDatabase(expiry),
                 expiry
             );
         }
@@ -35,7 +46,7 @@ namespace CodingCat.Cache.Tests
         {
             this.Test_ItemDelete_CannotGet(
                 this.KeyBuilder.UseKey(nameof(Test_ItemDelete_CannotGet)),
-                new Storage(TimeSpan.FromDays(1))
+                this.GetRedisDatabase(TimeSpan.FromDays(1))
             );
         }
 
@@ -44,8 +55,16 @@ namespace CodingCat.Cache.Tests
         {
             this.Test_GetOrAdd_Success(
                 this.KeyBuilder.UseKey(nameof(Test_GetOrAdd_Success)),
-                new Storage(TimeSpan.FromDays(1)),
+                this.GetRedisDatabase(TimeSpan.FromDays(1)),
                 Guid.NewGuid().ToString()
+            );
+        }
+
+        private Storage GetRedisDatabase(TimeSpan expiry)
+        {
+            return new Storage(
+                this.redis.GetDatabase(),
+                expiry
             );
         }
     }
