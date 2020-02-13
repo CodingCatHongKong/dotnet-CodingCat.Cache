@@ -1,8 +1,8 @@
-﻿using System;
-using CodingCat.Cache.Redis;
+﻿using CodingCat.Cache.Redis;
 using CodingCat.Cache.Tests.Abstracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StackExchange.Redis;
+using System;
 
 namespace CodingCat.Cache.Tests
 {
@@ -12,12 +12,14 @@ namespace CodingCat.Cache.Tests
         private IConnectionMultiplexer redis { get; }
 
         #region Constructor(s)
+
         public UnitTestRedisCache() : base()
         {
             this.redis = ConnectionMultiplexer
                 .Connect(Constants.REDIS_CONFIG);
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         [TestMethod]
         public void Test_Add_GetOk()

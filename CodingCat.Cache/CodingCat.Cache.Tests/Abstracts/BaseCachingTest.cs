@@ -1,12 +1,8 @@
 ﻿using CodingCat.Cache.Impls;
 using CodingCat.Cache.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
+using System.Threading;
 
 namespace CodingCat.Cache.Tests.Abstracts
 {
@@ -16,11 +12,13 @@ namespace CodingCat.Cache.Tests.Abstracts
         public KeyBuilder KeyBuilder { get; }
 
         #region Constructor(s)
+
         public BaseCachingTest()
         {
             this.KeyBuilder = new KeyBuilder<T>(Constants.USING_KEY_PREFIX);
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         protected void Test_Add_GetOk(
             IKeyBuilder usingKey,

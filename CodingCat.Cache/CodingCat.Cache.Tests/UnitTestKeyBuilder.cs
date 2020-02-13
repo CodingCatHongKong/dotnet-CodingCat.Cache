@@ -12,13 +12,15 @@ namespace CodingCat.Cache.Tests
         public KeyBuilder KeyBuilder { get; }
 
         #region Constructor(s)
+
         public UnitTestKeyBuilder()
         {
             this.KeyBuilder = new KeyBuilder<UnitTestKeyBuilder>(
                 Constants.USING_KEY_PREFIX
             );
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         [TestMethod]
         public void Test_InitKeyBuilder_Ok()

@@ -1,8 +1,6 @@
 ﻿using CodingCat.Cache.Interfaces;
 using StackExchange.Redis;
 using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace CodingCat.Cache.Redis
 {
@@ -13,13 +11,15 @@ namespace CodingCat.Cache.Redis
         public TimeSpan Expiry { get; }
 
         #region Constructor(s)
+
         public Storage(IDatabase database, TimeSpan expiry)
         {
             this.database = database;
 
             this.Expiry = expiry;
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         public IStorage Add(IKeyBuilder key, string item)
         {
