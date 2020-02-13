@@ -1,4 +1,5 @@
-﻿using CodingCat.Cache.Interfaces;
+﻿using CodingCat.Cache.Impls;
+using CodingCat.Cache.Interfaces;
 using System;
 using System.Runtime.Caching;
 
@@ -38,6 +39,11 @@ namespace CodingCat.Cache.Memory
             }
 
             return null;
+        }
+
+        public string Get(IKeyBuilder key, Func<string> callback)
+        {
+            return this.Get(key) ?? this.Add(key, callback()).Get(key);
         }
 
         public IStorage Delete(IKeyBuilder key)

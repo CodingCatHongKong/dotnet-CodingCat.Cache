@@ -72,5 +72,24 @@ namespace CodingCat.Cache.Tests
             // Assert
             Assert.IsNull(actual);
         }
+
+        [TestMethod]
+        public void Test_GetOrAdd_Success()
+        {
+            // Arrange
+            var usingKey = this.KeyBuilder
+                .UseKey(nameof(Test_GetOrAdd_Success));
+            var storage = new Storage(TimeSpan.FromDays(1));
+            var expected = Guid.NewGuid().ToString();
+
+            // Act
+            var actual = storage.Get(
+                usingKey,
+                () => expected
+            );
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
