@@ -1,4 +1,4 @@
-﻿namespace CodingCat.Cache.Impls.Interfaces
+﻿namespace CodingCat.Cache.Interfaces
 {
     public interface IKeyBuilder
     {

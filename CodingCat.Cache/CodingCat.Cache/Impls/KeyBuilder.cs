@@ -1,4 +1,4 @@
-﻿using CodingCat.Cache.Impls.Interfaces;
+﻿using CodingCat.Cache.Interfaces;
 using System;
 using System.Collections.Generic;
 using System.Linq;
