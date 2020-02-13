@@ -29,7 +29,7 @@ namespace CodingCat.Cache.Tests.Abstracts
         )
         {
             // Act
-            storage.Add(usingKey, expected);
+            storage.Delete(usingKey).Add(usingKey, expected);
             Thread.Sleep(500);
             var actual = storage.Get(usingKey);
 
@@ -44,7 +44,9 @@ namespace CodingCat.Cache.Tests.Abstracts
         )
         {
             // Act
-            storage.Add(usingKey, Guid.NewGuid().ToString());
+            storage
+                .Delete(usingKey)
+                .Add(usingKey, Guid.NewGuid().ToString());
             Thread.Sleep((int)expiry.TotalMilliseconds + 1);
             var actual = storage.Get(usingKey);
 
@@ -59,6 +61,7 @@ namespace CodingCat.Cache.Tests.Abstracts
         {
             // Act
             var actual = storage
+                .Delete(usingKey)
                 .Add(usingKey, Guid.NewGuid().ToString())
                 .Delete(usingKey)
                 .Get(usingKey);
@@ -74,7 +77,9 @@ namespace CodingCat.Cache.Tests.Abstracts
         )
         {
             // Act
-            var actual = storage.Get(usingKey, () => expected);
+            var actual = storage
+                .Delete(usingKey)
+                .Get(usingKey, () => expected);
 
             // Assert
             Assert.AreEqual(expected, actual);
