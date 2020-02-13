@@ -151,5 +151,29 @@ namespace CodingCat.Cache.Tests
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        [TestMethod]
+        public void Test_NoSegment_Expected()
+        {
+            const string USING_KEY = nameof(Test_NoSegment_Expected);
+
+            // Arrange
+            var expected = string.Join(
+                "-",
+                UsingType.FullName,
+                Constants.USING_KEY_PREFIX,
+                USING_KEY
+            );
+
+            // Act
+            var actual = new KeyBuilder<UnitTestKeyBuilder>(
+                Constants.USING_KEY_PREFIX
+            )
+                .UseKey(USING_KEY)
+                .ToString();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
     }
 }
