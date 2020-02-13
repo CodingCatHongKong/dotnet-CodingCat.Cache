@@ -1,5 +1,4 @@
-﻿using CodingCat.Cache.Impls;
-using CodingCat.Cache.Interfaces;
+﻿using CodingCat.Cache.Interfaces;
 using System;
 using System.Runtime.Caching;
 
@@ -12,13 +11,15 @@ namespace CodingCat.Cache.Memory
         public TimeSpan Expiry { get; }
 
         #region Constructor(s)
+
         public Storage(TimeSpan expiry)
         {
             this.memoryCache = MemoryCache.Default;
 
             this.Expiry = expiry;
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         public IStorage Add(IKeyBuilder key, string item)
         {

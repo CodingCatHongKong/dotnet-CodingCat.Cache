@@ -1,7 +1,7 @@
-﻿using System;
-using CodingCat.Cache.Impls;
+﻿using CodingCat.Cache.Impls;
 using CodingCat.Cache.Memory;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 
 namespace CodingCat.Cache.Tests
 {
@@ -11,13 +11,15 @@ namespace CodingCat.Cache.Tests
         public KeyBuilder KeyBuilder { get; }
 
         #region Constructor(s)
+
         public UnitTestMemoryCache()
         {
             this.KeyBuilder = new KeyBuilder<UnitTestMemoryCache>(
                 Constants.USING_KEY_PREFIX
             );
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         [TestMethod]
         public void Test_Add_GetOk()
