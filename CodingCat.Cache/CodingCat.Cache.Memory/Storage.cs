@@ -1,11 +1,6 @@
-﻿using CodingCat.Cache.Enums;
-using CodingCat.Cache.Interfaces;
+﻿using CodingCat.Cache.Interfaces;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Runtime.Caching;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CodingCat.Cache.Memory
 {
