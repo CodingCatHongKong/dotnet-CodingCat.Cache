@@ -28,7 +28,7 @@ namespace CodingCat.Cache.Tests.Abstracts
         {
             // Act
             storage.Delete(usingKey).Add(usingKey, expected);
-            Thread.Sleep(500);
+            Thread.Sleep(100);
             var actual = storage.Get(usingKey);
 
             // Assert
@@ -78,6 +78,25 @@ namespace CodingCat.Cache.Tests.Abstracts
             var actual = storage
                 .Delete(usingKey)
                 .Get(usingKey, () => expected);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        protected void Test_KeyWithSpace_GetOk(
+            IStorage storage
+        )
+        {
+            // Arrange
+            var usingKey = this.KeyBuilder
+                .UseKey(nameof(Test_KeyWithSpace_GetOk))
+                .AddSegment("Key with space");
+            var expected = Guid.NewGuid().ToString();
+
+            // Act
+            storage.Delete(usingKey).Add(usingKey, expected);
+            Thread.Sleep(100);
+            var actual = storage.Get(usingKey);
 
             // Assert
             Assert.AreEqual(expected, actual);

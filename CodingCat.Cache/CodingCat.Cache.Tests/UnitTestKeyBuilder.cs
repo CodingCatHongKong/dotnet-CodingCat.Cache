@@ -134,6 +134,32 @@ namespace CodingCat.Cache.Tests
         }
 
         [TestMethod]
+        public void Test_AddSegmentsByParams_Expected()
+        {
+            const string USING_KEY = nameof(Test_AddSegmentsByParams_Expected);
+
+            // Arrange
+            var segments = new object[] { Guid.NewGuid(), Guid.NewGuid() };
+            var expected = string.Join(
+                "-",
+                UsingType.FullName,
+                Constants.USING_KEY_PREFIX,
+                USING_KEY,
+                segments[0].ToString(),
+                segments[1].ToString()
+            );
+
+            // Act
+            var actual = this.KeyBuilder
+                .UseKey(USING_KEY)
+                .AddSegments(segments[0].ToString(), segments[1].ToString())
+                .ToString();
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
         public void Test_AddSegment_Expected()
         {
             const string USING_KEY = nameof(Test_AddSegment_Expected);
