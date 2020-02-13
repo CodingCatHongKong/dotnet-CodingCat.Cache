@@ -1,5 +1,4 @@
 ﻿using CodingCat.Cache.Enums;
-using System;
 
 namespace CodingCat.Cache.Interfaces
 {
@@ -11,6 +10,7 @@ namespace CodingCat.Cache.Interfaces
         FallbackPolicy FallbackPolicy { get; }
 
         IStorageManager SetDefault(IStorage storage);
+
         IStorageManager AddFallback(IStorage storage);
 
         string Get(IKeyBuilder key, FallbackPolicy fallbackPolicy);

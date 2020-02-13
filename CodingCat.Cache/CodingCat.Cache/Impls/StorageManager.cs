@@ -9,6 +9,7 @@ namespace CodingCat.Cache.Impls
     public class StorageManager : IStorageManager
     {
         private List<IStorage> fallbacks { get; } = new List<IStorage>();
+
         private IStorage[] storages
         {
             get => new IStorage[] { this.DefaultStorage }
@@ -22,6 +23,7 @@ namespace CodingCat.Cache.Impls
         public FallbackPolicy FallbackPolicy { get; }
 
         #region Constructor(s)
+
         public StorageManager()
         {
             this.FallbackPolicy = FallbackPolicy.Default;
@@ -44,9 +46,11 @@ namespace CodingCat.Cache.Impls
         {
             this.DefaultStorage = defaultStorage;
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         #region IStorage
+
         public IStorage Add(IKeyBuilder key, string item)
         {
             foreach (var storage in this.storages)
@@ -65,10 +69,12 @@ namespace CodingCat.Cache.Impls
         {
             foreach (var storage in this.storages) storage.Delete(key);
             return this;
-        } 
-        #endregion
+        }
+
+        #endregion IStorage
 
         #region IStorageManager
+
         public IStorageManager SetDefault(IStorage storage)
         {
             this.DefaultStorage = storage;
@@ -102,6 +108,7 @@ namespace CodingCat.Cache.Impls
 
             return value;
         }
-        #endregion
+
+        #endregion IStorageManager
     }
 }

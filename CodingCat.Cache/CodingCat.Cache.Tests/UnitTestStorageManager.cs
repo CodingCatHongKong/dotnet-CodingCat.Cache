@@ -1,9 +1,9 @@
-﻿using System;
-using CodingCat.Cache.Enums;
+﻿using CodingCat.Cache.Enums;
 using CodingCat.Cache.Impls;
 using CodingCat.Cache.Tests.Abstracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StackExchange.Redis;
+using System;
 using MemoryStorage = CodingCat.Cache.Memory.Storage;
 using RedisStorage = CodingCat.Cache.Redis.Storage;
 
@@ -15,13 +15,15 @@ namespace CodingCat.Cache.Tests
         private IConnectionMultiplexer redis { get; }
 
         #region Constructor(s)
+
         public UnitTestStorageManager()
         {
             this.redis = ConnectionMultiplexer.Connect(
                 Constants.REDIS_CONFIG
             );
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         [TestMethod]
         public void Test_Add_GetOk()
