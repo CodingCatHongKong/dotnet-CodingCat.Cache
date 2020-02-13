@@ -1,4 +1,5 @@
 ﻿using System;
+using CodingCat.Cache.Enums;
 using CodingCat.Cache.Impls;
 using CodingCat.Cache.Tests.Abstracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -80,6 +81,113 @@ namespace CodingCat.Cache.Tests
                     .AddFallback(redisStorage),
                 Guid.NewGuid().ToString()
             );
+        }
+
+        [TestMethod]
+        public void Test_GetFromFallback_Ok_NotSaved()
+        {
+            // Arrange
+            var usingKey = this.KeyBuilder.UseKey(
+                nameof(Test_GetFromFallback_Ok_NotSaved)
+            );
+            var expected = Guid.NewGuid().ToString();
+            var expiry = TimeSpan.FromMinutes(1);
+
+            var memoryStorage = new MemoryStorage(expiry);
+            var redisStorage = this.GetRedisStorage(expiry)
+                .Delete(usingKey)
+                .Add(usingKey, expected);
+            var cacheManager = new StorageManager()
+                .SetDefault(memoryStorage)
+                .AddFallback(redisStorage);
+
+            // Actual
+            var actual = cacheManager.Get(usingKey);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+            Assert.IsNull(cacheManager.DefaultStorage.Get(usingKey));
+        }
+
+        [TestMethod]
+        public void Test_GetFromFallback_Ok_Saved()
+        {
+            // Arrange
+            var usingKey = this.KeyBuilder.UseKey(
+                nameof(Test_GetFromFallback_Ok_Saved)
+            );
+            var expected = Guid.NewGuid().ToString();
+            var expiry = TimeSpan.FromMinutes(1);
+
+            var memoryStorage = new MemoryStorage(expiry);
+            var redisStorage = this.GetRedisStorage(expiry)
+                .Delete(usingKey)
+                .Add(usingKey, expected);
+            var cacheManager = new StorageManager(FallbackPolicy.SaveFromFallback)
+                .SetDefault(memoryStorage)
+                .AddFallback(redisStorage);
+
+            // Actual
+            var actual = cacheManager.Get(usingKey);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+            Assert.AreEqual(
+                expected,
+                cacheManager.DefaultStorage.Get(usingKey)
+            );
+        }
+
+        [TestMethod]
+        public void Test_GetFromFallback_OverridePolicy_Ok_Saved()
+        {
+            // Arrange
+            var usingKey = this.KeyBuilder.UseKey(
+                nameof(Test_GetFromFallback_OverridePolicy_Ok_Saved)
+            );
+            var expected = Guid.NewGuid().ToString();
+            var expiry = TimeSpan.FromMinutes(1);
+
+            var memoryStorage = new MemoryStorage(expiry);
+            var redisStorage = this.GetRedisStorage(expiry)
+                .Delete(usingKey)
+                .Add(usingKey, expected);
+            var cacheManager = new StorageManager()
+                .SetDefault(memoryStorage)
+                .AddFallback(redisStorage);
+
+            // Actual
+            cacheManager.Get(usingKey, FallbackPolicy.SaveFromFallback);
+            var actual = memoryStorage.Get(usingKey);
+
+            // Assert
+            Assert.AreEqual(expected, actual);
+        }
+
+        [TestMethod]
+        public void Test_GetFromFallback_OverridePolicy_Ok_NotSaved()
+        {
+            // Arrange
+            var usingKey = this.KeyBuilder.UseKey(
+                nameof(Test_GetFromFallback_OverridePolicy_Ok_NotSaved)
+            );
+            var expected = Guid.NewGuid().ToString();
+            var expiry = TimeSpan.FromMinutes(1);
+
+            var memoryStorage = new MemoryStorage(expiry);
+            var redisStorage = this.GetRedisStorage(expiry)
+                .Delete(usingKey)
+                .Add(usingKey, expected);
+            var cacheManager = new StorageManager(FallbackPolicy.SaveFromFallback)
+                .SetDefault(memoryStorage)
+                .AddFallback(redisStorage);
+
+            // Actual
+            cacheManager.Get(usingKey, FallbackPolicy.Default);
+            var actual = memoryStorage.Get(usingKey);
+
+            // Assert
+            Assert.IsNull(actual);
         }
 
         private RedisStorage GetRedisStorage(TimeSpan expiry)
