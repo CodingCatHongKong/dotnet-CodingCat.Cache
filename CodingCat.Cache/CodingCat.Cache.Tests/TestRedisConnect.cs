@@ -1,9 +1,9 @@
-﻿using System;
+﻿using CodingCat.Cache.Redis.Extensions;
 using CodingCat.Cache.Redis.Interfaces;
-using CodingCat.Cache.Redis.Extensions;
 using CodingCat.Cache.Tests.Impls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StackExchange.Redis;
+using System;
 
 namespace CodingCat.Cache.Tests
 {
