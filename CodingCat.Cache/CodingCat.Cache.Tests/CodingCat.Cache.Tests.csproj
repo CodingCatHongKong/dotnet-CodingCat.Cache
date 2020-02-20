@@ -82,7 +82,9 @@
   <ItemGroup>
     <Compile Include="Abstracts\BaseCachingTest.cs" />
     <Compile Include="Constants.cs" />
+    <Compile Include="Impls\ConnectRedisConfiguration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestRedisConnect.cs" />
     <Compile Include="UnitTestStorageManager.cs" />
     <Compile Include="UnitTestRedisCache.cs" />
     <Compile Include="UnitTestMemoryCache.cs" />
