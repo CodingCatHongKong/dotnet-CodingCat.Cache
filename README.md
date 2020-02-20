@@ -2,6 +2,7 @@
 
 Provides handy API to manage caches across different sources.
 
+
 #### Using the `IKeyBuilder`
 
 When doing the caches, sometimes the `key` to the cache is quite troubling us when a programmer uses `contact-email` to represent the company's contact email, but the other programmer uses the same key for the CS team email.
@@ -34,6 +35,7 @@ var usingKey = new KeyBuilder<Product>(environment)
   .UseKey(nameof(GetAllFeaturedProducts)); // -- only the UseKey is required
 ```
 
+
 #### Using the `IStorage`
 
 To allow easier dependency injection, we would like to wrap the caching classes into an interface thus we could replace the dependencies without any worries. Currently we support `MemoryCache` and `StackExchange.Redis`
@@ -61,6 +63,7 @@ var product = JsonConvert.DeserializedObject<Product>(
   )
 );
 ```
+
 
 #### What if micro-services?
 
@@ -103,7 +106,20 @@ var comments = this.StorageManager
   );
 ```
 
+#### Bonus (CodingCat.Cache.Redis)
+
+In order to allow connecting the Redis server with timeout & retry, we extended the `string` and `ConfigurationOptions` with said configurations to retry up to a given number if connect failed or timed out.
+
+```csharp
+var redisConnection = "127.0.0.1".CreateRedisConnection(
+  TimeSpan.FromSeconds(60), // -- timeout
+  TimeSpan.FromSeconds(3), // -- retry interval
+  3 // -- retry up to
+);
+```
+
+
 #### Target Frameworks
 
-- .Net 4.6.1
-- .Net Standard 2.0
+- .Net 4.6.1+
+- .Net Standard 2.0+
