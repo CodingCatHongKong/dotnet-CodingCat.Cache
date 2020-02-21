@@ -35,10 +35,10 @@ namespace CodingCat.Cache.Impls
 
         #endregion Constructor(s)
 
-        public KeyBuilder UseKey(string key) =>
+        public IKeyBuilder UseKey(string key) =>
             new KeyBuilder(this) { UsingKey = key };
 
-        public KeyBuilder AddSegments(params object[] segments)
+        public IKeyBuilder AddSegments(params object[] segments)
         {
             this.segments
                 .AddRange(segments
@@ -47,7 +47,7 @@ namespace CodingCat.Cache.Impls
             return this;
         }
 
-        public KeyBuilder AddSegment(object segment)
+        public IKeyBuilder AddSegment(object segment)
         {
             this.segments.Add(segment.ToString());
             return this;
