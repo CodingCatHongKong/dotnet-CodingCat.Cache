@@ -107,7 +107,7 @@ namespace CodingCat.Cache.Tests.Abstracts
         )
         {
             // Arrange
-            var notExpected = DateTime.Now.Ticks;
+            var notExpected = true;
             var usingKey = this.KeyBuilder
                 .UseKey(nameof(Test_NullValue_IsByPassed));
 
@@ -120,7 +120,7 @@ namespace CodingCat.Cache.Tests.Abstracts
                 usingKey,
                 () =>
                 {
-                    actual = DateTime.Now.Ticks;
+                    actual = !notExpected;
                     return null;
                 }
             );
