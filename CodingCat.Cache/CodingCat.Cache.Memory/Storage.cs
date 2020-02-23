@@ -23,11 +23,15 @@ namespace CodingCat.Cache.Memory
 
         public IStorage Add(IKeyBuilder key, string item)
         {
-            this.memoryCache.Add(
-                key.ToString(),
-                item,
-                DateTimeOffset.Now.Add(this.Expiry)
-            );
+            if (item != null)
+            {
+                this.memoryCache.Add(
+                    key.ToString(),
+                    item,
+                    DateTimeOffset.Now.Add(this.Expiry)
+                );
+            }
+
             return this;
         }
 

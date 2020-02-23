@@ -56,5 +56,13 @@ namespace CodingCat.Cache.Tests
                 new Storage(TimeSpan.FromDays(1))
             );
         }
+
+        [TestMethod]
+        public void Test_NullValue_IsByPassed()
+        {
+            this.Test_NullValue_IsByPassed(
+                new Storage(TimeSpan.FromDays(1))
+            );
+        }
     }
 }

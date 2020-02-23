@@ -1,3 +1,8 @@
+#### 0.2.2
+
+- fixed #1
+
+
 #### 0.2.1
 
 - patched `CodingCat.Cache` by added back the missing functions to the `IKeyBuilder`
