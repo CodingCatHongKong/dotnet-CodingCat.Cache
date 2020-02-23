@@ -70,6 +70,14 @@ namespace CodingCat.Cache.Tests
             );
         }
 
+        [TestMethod]
+        public void Test_NullValue_IsByPassed()
+        {
+            this.Test_NullValue_IsByPassed(
+                this.GetRedisDatabase(TimeSpan.FromDays(1))
+            );
+        }
+
         private Storage GetRedisDatabase(TimeSpan expiry)
         {
             return new Storage(
