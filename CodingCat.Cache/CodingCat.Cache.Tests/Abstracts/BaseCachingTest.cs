@@ -101,5 +101,32 @@ namespace CodingCat.Cache.Tests.Abstracts
             // Assert
             Assert.AreEqual(expected, actual);
         }
+
+        protected void Test_NullValue_IsByPassed(
+            IStorage storage
+        )
+        {
+            // Arrange
+            var notExpected = DateTime.Now.Ticks;
+            var usingKey = this.KeyBuilder
+                .UseKey(nameof(Test_NullValue_IsByPassed));
+
+            storage.Delete(usingKey)
+                .Get(usingKey, () => null);
+
+            // Act
+            var actual = notExpected;
+            storage.Get(
+                usingKey,
+                () =>
+                {
+                    actual = DateTime.Now.Ticks;
+                    return null;
+                }
+            );
+
+            // Assert
+            Assert.AreNotEqual(notExpected, actual);
+        }
     }
 }
