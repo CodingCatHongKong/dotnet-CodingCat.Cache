@@ -1,4 +1,5 @@
 ﻿using CodingCat.Cache.Interfaces;
+using CodingCat.Cache.Redis.Interfaces;
 using StackExchange.Redis;
 using System;
 
@@ -19,10 +20,8 @@ namespace CodingCat.Cache.Redis
             this.Expiry = expiry;
         }
 
-        public Storage(
-            IDatabase database,
-            IStorageConfiguration configuration
-        ) : this(database, configuration.Expiry) { }
+        public Storage(IRedisStorageConfiguration configuration)
+            : this(configuration.GetDatabase(), configuration.Expiry) { }
 
         #endregion Constructor(s)
 

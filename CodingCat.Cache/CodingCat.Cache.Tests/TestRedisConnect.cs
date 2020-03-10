@@ -1,4 +1,4 @@
-﻿using CodingCat.Cache.Redis.Extensions;
+﻿using CodingCat.Cache.Redis;
 using CodingCat.Cache.Redis.Interfaces;
 using CodingCat.Cache.Tests.Impls;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
