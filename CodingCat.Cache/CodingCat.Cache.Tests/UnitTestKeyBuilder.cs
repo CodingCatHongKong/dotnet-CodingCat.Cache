@@ -43,6 +43,29 @@ namespace CodingCat.Cache.Tests
         }
 
         [TestMethod]
+        public void Test_InitKeyBuilder_WithConfig_Ok()
+        {
+            // Arrange
+            var expectedPrefix = string.Join(
+                "-",
+                UsingType.FullName,
+                Constants.USING_KEY_PREFIX
+            );
+
+            // Act
+            var actual = new KeyBuilder(
+                new KeyBuilderConfiguration()
+                {
+                    UsingType = UsingType,
+                    KeyPrefix = Constants.USING_KEY_PREFIX
+                }
+            );
+
+            // Assert
+            Assert.AreEqual(expectedPrefix, actual.KeyPrefix);
+        }
+
+        [TestMethod]
         public void Test_InitKeyBuilderWithGenericType_Ok()
         {
             // Arrange

@@ -33,6 +33,11 @@ namespace CodingCat.Cache.Impls
             );
         }
 
+        public KeyBuilder(IKeyBuilderConfiguration configuration)
+            : this(configuration.UsingType, configuration.KeyPrefix)
+        {
+        }
+
         #endregion Constructor(s)
 
         public IKeyBuilder UseKey(string key) =>
