@@ -1,4 +1,5 @@
-﻿using CodingCat.Cache.Redis;
+﻿using CodingCat.Cache.Impls;
+using CodingCat.Cache.Redis;
 using CodingCat.Cache.Tests.Abstracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using StackExchange.Redis;
@@ -28,6 +29,22 @@ namespace CodingCat.Cache.Tests
                 this.KeyBuilder.UseKey(nameof(Test_Add_GetOk)),
                 this.GetRedisDatabase(TimeSpan.FromDays(1)),
                 expected: nameof(UnitTestMemoryCache)
+            );
+        }
+
+        [TestMethod]
+        public void Test_InitWithConfig_Add_GetOk()
+        {
+            this.Test_Add_GetOk(
+                this.KeyBuilder.UseKey(nameof(Test_InitWithConfig_Add_GetOk)),
+                new Storage(
+                    this.redis.GetDatabase(),
+                    new StorageConfiguration()
+                    {
+                        Expiry = TimeSpan.FromDays(1)
+                    }
+                ),
+                expected: Guid.NewGuid().ToString()
             );
         }
 

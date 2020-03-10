@@ -19,6 +19,11 @@ namespace CodingCat.Cache.Redis
             this.Expiry = expiry;
         }
 
+        public Storage(
+            IDatabase database,
+            IStorageConfiguration configuration
+        ) : this(database, configuration.Expiry) { }
+
         #endregion Constructor(s)
 
         public IStorage Add(IKeyBuilder key, string item)
