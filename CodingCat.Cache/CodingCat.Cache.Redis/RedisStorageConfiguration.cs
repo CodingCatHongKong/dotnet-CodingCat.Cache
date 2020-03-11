@@ -12,7 +12,10 @@ namespace CodingCat.Cache.Redis
         public TimeSpan Expiry { get; set; }
 
         #region Constructor(s)
-        public RedisStorageConfiguration() { }
+
+        public RedisStorageConfiguration()
+        {
+        }
 
         public RedisStorageConfiguration(
             IConnectionMultiplexer redisConnection,
@@ -23,7 +26,8 @@ namespace CodingCat.Cache.Redis
             this.DatabaseIndex = configuration.DatabaseIndex;
             this.Expiry = configuration.Expiry;
         }
-        #endregion
+
+        #endregion Constructor(s)
 
         public IDatabase GetDatabase()
         {
