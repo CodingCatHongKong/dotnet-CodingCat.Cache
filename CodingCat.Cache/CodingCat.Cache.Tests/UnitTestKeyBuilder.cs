@@ -54,9 +54,9 @@ namespace CodingCat.Cache.Tests
 
             // Act
             var actual = new KeyBuilder(
+                UsingType,
                 new KeyBuilderConfiguration()
                 {
-                    UsingType = UsingType,
                     KeyPrefix = Constants.USING_KEY_PREFIX
                 }
             );

@@ -33,8 +33,10 @@ namespace CodingCat.Cache.Impls
             );
         }
 
-        public KeyBuilder(IKeyBuilderConfiguration configuration)
-            : this(configuration.UsingType, configuration.KeyPrefix)
+        public KeyBuilder(
+            Type usingType,
+            IKeyBuilderConfiguration configuration
+        ) : this(usingType, configuration.KeyPrefix)
         {
         }
 
@@ -76,13 +78,16 @@ namespace CodingCat.Cache.Impls
         }
     }
 
-    public class KeyBuilder<T> : KeyBuilder
+    public class KeyBuilder<T> : KeyBuilder, IKeyBuilder<T>
     {
         #region Constructor(s)
 
         public KeyBuilder(string keyPrefix) : base(typeof(T), keyPrefix)
         {
         }
+
+        public KeyBuilder(IKeyBuilderConfiguration configuration)
+            : base(typeof(T), configuration.KeyPrefix) { }
 
         #endregion Constructor(s)
     }
