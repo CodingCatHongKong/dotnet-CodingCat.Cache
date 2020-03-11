@@ -19,6 +19,9 @@ namespace CodingCat.Cache.Memory
             this.Expiry = expiry;
         }
 
+        public Storage(IStorageConfiguration configuration)
+            : this(configuration.Expiry) { }
+
         #endregion Constructor(s)
 
         public IStorage Add(IKeyBuilder key, string item)
