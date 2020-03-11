@@ -33,12 +33,20 @@ namespace CodingCat.Cache
                 );
         }
 
+        public static IServiceCollection AddStorage<T>(
+            this IServiceCollection services
+        ) where T : class, IStorage
+        {
+            return services
+                .AddTransient<IStorage, T>()
+                .AddTransient<T, T>();
+        }
+
         public static IServiceCollection AddStorageManager<T>(
             this IServiceCollection services
         ) where T : class, IStorageManager
         {
             return services
-                .AddTransient<IStorageManager, T>()
                 .AddSingleton<Func<IStorage, IStorageManager>>(
                     provider => defaultStorage =>
                     {
@@ -49,7 +57,7 @@ namespace CodingCat.Cache
                             );
 
                         var manager = ActivatorUtilities
-                            .CreateInstance<IStorageManager>(
+                            .CreateInstance<T>(
                                 provider,
                                 defaultStorage
                             );
