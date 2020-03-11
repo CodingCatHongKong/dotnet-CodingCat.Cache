@@ -32,6 +32,22 @@ namespace CodingCat.Cache.Tests
         }
 
         [TestMethod]
+        public void Test_InitWithConfig_Add_GetOk()
+        {
+            this.Test_Add_GetOk(
+                this.KeyBuilder.UseKey(nameof(Test_InitWithConfig_Add_GetOk)),
+                new Storage(
+                    new RedisStorageConfiguration()
+                    {
+                        RedisConnection = this.redis,
+                        Expiry = TimeSpan.FromDays(1)
+                    }
+                ),
+                expected: Guid.NewGuid().ToString()
+            );
+        }
+
+        [TestMethod]
         public void Test_ItemExpired_ReturnNull()
         {
             var expiry = TimeSpan.FromMilliseconds(100);

@@ -1,4 +1,5 @@
-﻿using CodingCat.Cache.Memory;
+﻿using CodingCat.Cache.Impls;
+using CodingCat.Cache.Memory;
 using CodingCat.Cache.Tests.Abstracts;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using System;
@@ -15,6 +16,19 @@ namespace CodingCat.Cache.Tests
                 this.KeyBuilder.UseKey(nameof(Test_Add_GetOk)),
                 new Storage(TimeSpan.FromDays(1)),
                 expected: nameof(UnitTestMemoryCache)
+            );
+        }
+
+        [TestMethod]
+        public void Test_InitWithConfig_Add_GetOk()
+        {
+            this.Test_Add_GetOk(
+                this.KeyBuilder.UseKey(nameof(Test_InitWithConfig_Add_GetOk)),
+                new Storage(new StorageConfiguration()
+                {
+                    Expiry = TimeSpan.FromDays(1)
+                }),
+                expected: Guid.NewGuid().ToString()
             );
         }
 

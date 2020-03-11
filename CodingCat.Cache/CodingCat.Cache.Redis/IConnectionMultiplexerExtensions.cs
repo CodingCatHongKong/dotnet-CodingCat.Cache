@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Threading.Tasks;
 
-namespace CodingCat.Cache.Redis.Extensions
+namespace CodingCat.Cache.Redis
 {
     public static class IConnectionMultiplexerExtensions
     {
