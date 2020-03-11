@@ -6,12 +6,12 @@ namespace CodingCat.Cache
 {
     public static class ResolveExtensions
     {
-        public static IKeyBuilder Resolve(this IServiceProvider provider)
+        public static IKeyBuilder ResolveKeyBuilder(this IServiceProvider provider)
         {
             return provider.GetService<IKeyBuilder>();
         }
 
-        public static IKeyBuilder Require(this IServiceProvider provider)
+        public static IKeyBuilder RequireKeyBuilder(this IServiceProvider provider)
         {
             return provider.GetRequiredService<IKeyBuilder>();
         }
