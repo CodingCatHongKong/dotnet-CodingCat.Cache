@@ -119,6 +119,34 @@ var redisConnection = "127.0.0.1".CreateRedisConnection(
 ```
 
 
+#### Working with DI
+
+```csharp
+// -- Inject the keybuilder
+services
+    .AddSingleton(keyBuilderConfig) // -- IKeyBuilderConfiguration
+    .AddTransient(typeof(IKeyBuilder<>), typeof(KeyBuilder<>));
+    
+// -- Inject storages
+using MemoryStorage = CodingCat.Cache.Memory.Storage;
+using RedisStorage = CodingCat.Cache.Redis.Storage;
+
+services
+    .AddStorageConfig(this.serviceConfigurations.Caching)   // -- IStorageConfiguration or IRedisStorageConfiguration
+    .AddStorage<MemoryStorage>()
+
+    .AddRedisStorageConfig(this.serviceConfigurations.Caching)  // -- IRedisStorageConfiguration
+    .AddStorage<RedisStorage>()
+
+    .AddStorageManager<StorageManager>();
+    
+// -- Retrieving the storage manager
+using MemoryStorage = CodingCat.Cache.Memory.Storage;
+
+provider.ResolveStorageManager<MemoryStorage>();
+```
+
+
 #### Target Frameworks
 
 - .Net 4.6.1+

@@ -1,3 +1,8 @@
+#### 0.3.0
+
+- made the libraries to be dependency injection friendly
+
+
 #### 0.2.2
 
 - fixed #1
