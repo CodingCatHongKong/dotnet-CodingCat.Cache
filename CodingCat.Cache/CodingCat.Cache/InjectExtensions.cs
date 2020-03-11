@@ -61,5 +61,23 @@ namespace CodingCat.Cache
                     }
                 );
         }
+
+        public static IServiceCollection AddKeyBuilderConfig<T>(
+            this IServiceCollection services,
+            T configuration
+        ) where T : class, IKeyBuilderConfiguration
+        {
+            return services
+                .AddSingleton<IKeyBuilderConfiguration>(configuration);
+        }
+
+        public static IServiceCollection AddStorageConfig<T>(
+            this IServiceCollection services,
+            T configuration
+        ) where T : class, IStorageConfiguration
+        {
+            return services
+                .AddSingleton<IStorageConfiguration>(configuration);
+        }
     }
 }
