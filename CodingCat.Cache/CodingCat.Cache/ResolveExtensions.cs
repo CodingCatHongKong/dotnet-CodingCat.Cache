@@ -6,36 +6,26 @@ namespace CodingCat.Cache
 {
     public static class ResolveExtensions
     {
-        public static IKeyBuilder ResolveKeyBuilder(this IServiceProvider provider)
-        {
-            return provider.GetService<IKeyBuilder>();
-        }
-
-        public static IKeyBuilder RequireKeyBuilder(this IServiceProvider provider)
-        {
-            return provider.GetRequiredService<IKeyBuilder>();
-        }
-
-        public static IKeyBuilder Resolve(
-            this IServiceProvider provider,
-            IKeyBuilderConfiguration configuration
-        )
-        {
-            return provider
-                .GetService<Func<IKeyBuilderConfiguration, IKeyBuilder>>()(
-                    configuration
-                );
-        }
-
-        public static IStorageManager Resolve(
+        public static IStorageManager ResolveStorageManager(
             this IServiceProvider provider,
             IStorage defaultStorage
         )
         {
             return provider
-                .GetService<Func<IStorage, IStorageManager>>()(
+                .Require<Func<IStorage, IStorageManager>>()(
                     defaultStorage
                 );
         }
+
+        public static IStorageManager ResolveStorageManager<T>(
+            this IServiceProvider provider
+        ) where T : class, IStorage
+        {
+            return provider.ResolveStorageManager(
+                provider.Require<T>()
+            );
+        }
+
+        internal static T Require<T>(this IServiceProvider provider) => provider.GetRequiredService<T>();
     }
 }
