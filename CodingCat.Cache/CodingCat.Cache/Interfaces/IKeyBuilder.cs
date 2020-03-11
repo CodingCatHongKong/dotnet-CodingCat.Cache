@@ -13,4 +13,6 @@
 
         string ToString();
     }
+
+    public interface IKeyBuilder<T> : IKeyBuilder { }
 }
